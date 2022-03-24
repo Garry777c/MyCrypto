@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Runner {
@@ -9,8 +7,8 @@ public class Runner {
     //set String variables
     final static private String
             WELCOME =  "Welcome to Caesar Crypto!",
-            MAKECHOICE =  "Please enter number of type of ciphering (from 1 to 4) you would go :",
-            CRYPTOTYPES = """
+            MAKE_CHOICE =  "Please enter number of type of ciphering (from 1 to 4) you would go :",
+            CRYPTO_TYPES = """
                     1 - Coding file...
                     2 - Decoding file...
                     3 - Using "Brute Force" method to decrypt file...
@@ -20,11 +18,11 @@ public class Runner {
 
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         System.out.println(WELCOME);
-        System.out.println(MAKECHOICE);
-        System.out.println(CRYPTOTYPES);
+        System.out.println(MAKE_CHOICE);
+        System.out.println(CRYPTO_TYPES);
 
             //new Fabric variable
             TypesOfCode typesOfCode = null;
@@ -46,21 +44,28 @@ public class Runner {
                     System.out.format("You entered \"%s\". Please enter correct number from 1 to 4: ", x);
                 }
             }
+
                 //depending on entered value, a new object on enum is created
                 switch (codeNumber) {
                         case 1 -> typesOfCode = TypesOfCode.CODER;
                         case 2 -> typesOfCode = TypesOfCode.DECODER;
-                        case 3 -> typesOfCode = TypesOfCode.BRUTOFORCE;
-                        case 4 -> typesOfCode = TypesOfCode.STATICANALYSIS;
+                        case 3 -> typesOfCode = TypesOfCode.BRUTO_FORCE;
+                        case 4 -> typesOfCode = TypesOfCode.STATIC_ANALYSIS;
 
                 }
 
 
                 //New interface variable is created and depending on type of enum, a new object is created using Factory method
                 CaesarCipherTypes currentCryptoType = new CryptoFactory().getTypeOfCrypto(typesOfCode);
-                currentCryptoType.getCaesarCoreType();
+                currentCryptoType.runCaesarCoreType();
+                currentCryptoType.executeCaesarCoreType();
+
 
                 //all logic for ciphering will be inside the active objects
+
+        //testing soup's
+//          System.out.println(currentCryptoType.Alphabet[5]);
+//          System.out.println("Alphabet length: " + currentCryptoType.Alphabet.length);
 
 
     }
