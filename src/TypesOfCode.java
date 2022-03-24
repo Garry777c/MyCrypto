@@ -1,6 +1,6 @@
 public enum TypesOfCode {
     CODER,
     DECODER,
-    BRUTOFORCE,
-    STATICANALYSIS;
+    BRUTO_FORCE,
+    STATIC_ANALYSIS
 }
