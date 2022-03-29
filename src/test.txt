@@ -1,4 +1,7 @@
-!
-Bebe test
-Test
-test!
+note that the data system only controls what happens to the next run in the sequence, not the
+current run, except when set to immediately abort. (in that case, the data system typically
+aborts the current run and the sequence).
+
+
+
+
