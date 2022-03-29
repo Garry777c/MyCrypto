@@ -1,6 +1,8 @@
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -18,6 +20,7 @@ public class CaesarCoder implements CaesarCipherTypes {
     private int code=0;
     private Path sourceFile;
     private Path destFile;
+    private char temp;
 
 
     @Override
@@ -35,7 +38,7 @@ public class CaesarCoder implements CaesarCipherTypes {
             System.out.println(ENTER_CODE);
             String line;
             try {
-                //checking if code is withing range
+                //checking if code is within range
                 while ((line = reader.readLine()) != null) {
                     code = Integer.parseInt(line);
                     if (code < 1 || code > 35) {
@@ -59,17 +62,20 @@ public class CaesarCoder implements CaesarCipherTypes {
         sourceFile = Path.of(fileName);
         //destFile = Path.of("src/destFile.txt");
         //opening FileChannel channel
-        try(FileChannel channel = new RandomAccessFile(sourceFile.toFile(), "rw").getChannel()) {
+
+        try(
+                FileChannel channel = new RandomAccessFile(sourceFile.toFile(), "rw").getChannel()) {
 
             //reading bytes from channel and writing them to buffer
             ByteBuffer byteBufferReader = ByteBuffer.allocate((int) channel.size());
+
             channel.read(byteBufferReader);
             byteBufferReader.flip();
 
 
-            ByteBuffer byteBufferWriter = ByteBuffer.allocate(byteBufferReader.capacity()); //another buffer for writing coded chars
+            ByteBuffer byteBufferWriter = ByteBuffer.allocate(byteBufferReader.capacity());//another buffer for writing coded chars
             while (byteBufferReader.hasRemaining()){
-                char temp = '@';
+
                 char ch = (Character.toLowerCase((char)byteBufferReader.get())); //get bytes from buffer and cast them to char
                 if (ch == '\n') {//check if it's the end of line
                     temp = ch;
@@ -82,6 +88,8 @@ public class CaesarCoder implements CaesarCipherTypes {
                                 temp = CaesarCipherTypes.Alphabet[(code + i) % CaesarCipherTypes.Alphabet.length];
                             }
                             break;
+                        } else {
+                            temp = ch;
                         }
 
                     }
