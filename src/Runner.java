@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Runner {
@@ -14,7 +13,7 @@ public class Runner {
                     3 - Using "Brute Force" method to decrypt file...
                     4 - Using "Static Analysis" method to decrypt file...
                     """,
-            FILEENTER = "Please enter file path and name: ";
+            PICK_TYPE = "Please enter correct number from 1 to 4: ";
 
 
 
@@ -36,12 +35,12 @@ public class Runner {
                     codeNumber = scanner.nextInt();
                     //if customer entered wrong int app is asking to enter correct number
                     if (codeNumber != 1 && codeNumber != 2 && codeNumber != 3 && codeNumber != 4) {
-                        System.out.println("Please enter correct number from 1 to 4: ");
+                        System.out.println(PICK_TYPE);
                     } else break;
                 } else {
                     //if customer entered any string, app is showing the wrong entering and is asking to enter correct number
                     String x = scanner.nextLine();
-                    System.out.format("You entered \"%s\". Please enter correct number from 1 to 4: ", x);
+                    System.out.format("You entered \"%s\"."+PICK_TYPE, x);
                 }
             }
 
@@ -62,11 +61,6 @@ public class Runner {
 
 
                 //all logic for ciphering will be inside the active objects
-
-        //testing soup's
-//          System.out.println(currentCryptoType.Alphabet[5]);
-//          System.out.println("Alphabet length: " + currentCryptoType.Alphabet.length);
-
 
     }
 
