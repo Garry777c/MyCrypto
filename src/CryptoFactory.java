@@ -6,7 +6,7 @@ public class CryptoFactory {
         return switch (enteredCryptoType) {
             case CODER -> type = new CaesarCoder();
             case DECODER -> type = new CaesarDeCoder();
-            case BRUTO_FORCE -> type = new CaesarBrutoForceDeCoder();
+            case BRUTO_FORCE -> type = new CaesarBruteForceDeCoder();
             case STATIC_ANALYSIS -> type = new StaticAnalysisDeCoder();
         };
     }
