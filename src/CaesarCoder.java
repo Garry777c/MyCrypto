@@ -10,13 +10,15 @@ import java.nio.file.Path;
 public class CaesarCoder implements CaesarCipherTypes {
     //to code files
     final static private String
+                    CODER_TYPE = "CaesarCoder class",
                     ENTER_FILE = "Please enter file path and name: ",
                     FILE_NOT_EXIST = "File is not found. Please check file name or path and enter it again: ",
                     ENTER_CODE = "Please enter the code (integer between 1 and 35) for ciphering: ",
+                    IS_NOT_NUMERIC =" is not numeric",
+                    WRONG_ENTER = "Wrong entering",
                     RE_ENTER_CODE = "Value is out of range. Please enter the code (integer between 1 and 35) for ciphering: ";
 
 
-    private String fileName="";
     private int code=0;
     private Path sourceFile;
     private Path destFile;
@@ -25,10 +27,11 @@ public class CaesarCoder implements CaesarCipherTypes {
 
     @Override
     public void runCaesarCoreType() {
-        System.out.println("CaesarCoder class");
+        System.out.println(CODER_TYPE);
         System.out.println(ENTER_FILE);
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            String fileName;
             while ((fileName = reader.readLine()) != null) {
                 if (!Files.exists(sourceFile = Path.of(fileName))) {
                     System.out.println(FILE_NOT_EXIST);
@@ -49,19 +52,16 @@ public class CaesarCoder implements CaesarCipherTypes {
                 e.printStackTrace();
                 //catching NFE exception if string entering
             } catch (NumberFormatException e) {
-                System.out.println(e.getMessage() + " is not numeric");
+                System.out.println(e.getMessage() + IS_NOT_NUMERIC);
             }
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Wrong entering");
+            System.out.println(WRONG_ENTER);
         }
     }
 
     @Override
     public void executeCaesarCoreType() {
-        sourceFile = Path.of(fileName);
-        //destFile = Path.of("src/destFile.txt");
-        //opening FileChannel channel
 
         try(
                 FileChannel channel = new RandomAccessFile(sourceFile.toFile(), "rw").getChannel()) {
@@ -102,7 +102,7 @@ public class CaesarCoder implements CaesarCipherTypes {
             channel.truncate(0); //clear original file content
             channel.write(byteBufferWriter); //write new buffer with coded chars to the original file
 
-         //   System.out.println("");
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -110,5 +110,5 @@ public class CaesarCoder implements CaesarCipherTypes {
 
     }
 
-    // System.out.println(fileName+" Shifting value:"+code); //
+
 }
