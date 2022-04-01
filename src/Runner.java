@@ -48,7 +48,7 @@ public class Runner {
                 switch (codeNumber) {
                         case 1 -> typesOfCode = TypesOfCode.CODER;
                         case 2 -> typesOfCode = TypesOfCode.DECODER;
-                        case 3 -> typesOfCode = TypesOfCode.BRUTO_FORCE;
+                        case 3 -> typesOfCode = TypesOfCode.BRUTE_FORCE;
                         case 4 -> typesOfCode = TypesOfCode.STATIC_ANALYSIS;
 
                 }
