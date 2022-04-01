@@ -73,7 +73,6 @@ public class CaesarDeCoder implements CaesarCipherTypes {
 
             ByteBuffer byteBufferWriter = ByteBuffer.allocate(byteBufferReader.capacity()); //another buffer for writing decoded chars
             while (byteBufferReader.hasRemaining()){
-                //char temp;
                 char ch = (Character.toLowerCase((char)byteBufferReader.get())); //get bytes from buffer and cast them to char
                 if (ch == '\n') {//check if it's the end of line
                     temp = ch;
